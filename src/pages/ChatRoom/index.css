@@ -1,0 +1,46 @@
+.side-bar-enter {
+    transform: translateX(-110%);
+}
+
+.side-bar-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms;
+}
+
+
+.side-bar-exit {
+    transform: translateX(0);
+}
+
+.side-bar-exit-active {
+    transform: translateX(-110%);
+    transition: transform 300ms;
+}
+
+
+/* .chat-field-enter {
+    width: 100vw;
+}
+
+.chat-field-enter-active {
+    width: calc(100vw - 260);
+    transition: all 300ms;
+}
+
+.chat-field-enter-done {
+    width: 100%;
+    transition: all 300ms;
+}
+
+.chat-field-exit {
+    width: calc(100vw - 260);
+}
+
+.chat-field-exit-active {
+    width: calc(100vw - 260);
+    transition: all 300ms;
+}
+
+.chat-field-exit-done {
+    width: calc(100vw - 260);
+} */
