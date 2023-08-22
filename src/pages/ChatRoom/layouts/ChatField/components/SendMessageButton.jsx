@@ -11,7 +11,7 @@ const SendMessageButton = ({ disabled = true }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
         fill="gray"
-        className="h-4 w-4 m-1 md:m-0 ct-transition"
+        className="w-4 h-4 m-1 md:m-0 ct-transition"
         strokeWidth="2"
       >
         <path
