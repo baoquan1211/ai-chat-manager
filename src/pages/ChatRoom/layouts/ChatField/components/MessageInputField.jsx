@@ -15,10 +15,11 @@ const MessageInputField = ({ props }) => {
   const { message, setMessage } = props;
   return (
     <input
+      name="message_input"
       rows={1}
       type="text"
       placeholder="Send a message"
-      className="flex flex-grow max-h-[100px] overflow-hidden font-sans resize-none focus-visible:outline-none"
+      className="flex flex-grow max-h-[100px] overflow-hidden font-sans resize-none focus-visible:outline-none bg-background"
       onChange={(event) => {
         setMessage(event.target.value);
       }}

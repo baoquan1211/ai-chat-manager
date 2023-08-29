@@ -1,6 +1,13 @@
-const AssistantAvartar = () => {
+import { cn } from "../../../../../lib/utils";
+
+const AssistantAvartar = ({ className }) => {
   return (
-    <div className="relative p-1 rounded-sm h-[30px] w-[30px] text-white flex items-center justify-center bg-green-500">
+    <div
+      className={cn(
+        `relative p-1 rounded-sm h-[30px] w-[30px] text-white flex items-center justify-center bg-green-500`,
+        className
+      )}
+    >
       <svg
         width="41"
         height="41"

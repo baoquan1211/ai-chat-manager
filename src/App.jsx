@@ -1,21 +1,48 @@
 import ChatRoom from "./pages/ChatRoom";
+import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-const queryClient = new QueryClient();
+import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { ThemeProvider } from "@/components/theme-provider";
+
+import "react-toastify/dist/ReactToastify.css";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: Infinity,
+    },
+    mutations: {
+      cacheTime: Infinity,
+    },
+  },
+});
 
 const App = () => {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<ChatRoom />} />
-            <Route path="/c/:id" element={<ChatRoom />} />
-          </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+              <BrowserRouter>
+                <ToastContainer />
+                <Routes>
+                  <Route path="/" element={<ChatRoom />} />
+                  <Route path="/c/:id" element={<ChatRoom />} />
+                  <Route path="/c/:id" element={<ChatRoom />} />
+                  <Route path="/login" element={<Login />} />
+                </Routes>
+              </BrowserRouter>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </ThemeProvider>
+          </QueryClientProvider>
+        </PersistGate>
+      </Provider>
     </>
   );
 };

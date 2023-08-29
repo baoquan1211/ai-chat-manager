@@ -2,26 +2,23 @@ import AssistantAvartar from "./AssistantAvartar";
 import UserAvartar from "./UserAvartar";
 import { twMerge } from "tailwind-merge";
 
-const MessageCard = ({
-  children,
-  role = "server",
-  blocked = false,
-  UserModel,
-}) => {
+const MessageCard = ({ children, role = "server", blocked = false }) => {
   return (
     <div
       className={twMerge(
         `border-y-[1px] py-3 w-full flex justify-center ${
-          blocked === true ? "bg-red-100 border-red-400" : "bg-blue-100"
-        } ${role === "assistant" ? "bg-gray-100" : ""} 
-          ${role === "user" ? "bg-white" : ""}`
+          blocked === true
+            ? "bg-red-100 border-red-400 dark:bg-red-200 dark:text-black"
+            : "bg-blue-100"
+        } ${role === "assistant" ? "bg-gray-100 dark:bg-gray-800/50" : ""} 
+          ${role === "user" ? "bg-white dark:bg-[#444654]" : ""}`
       )}
     >
       <div className="w-[80%] flex gap-4">
         {role === "assistant" ? (
           <AssistantAvartar />
         ) : role === "user" ? (
-          <UserAvartar userName={UserModel.Name} />
+          <UserAvartar />
         ) : (
           <div className="relative p-1 rounded-sm h-[30px] w-[30px] text-white flex items-center justify-center bg-blue-300 select-none">
             FJN

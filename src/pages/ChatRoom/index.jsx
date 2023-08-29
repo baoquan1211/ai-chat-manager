@@ -7,18 +7,6 @@ import Button from "./layouts/SideBar/components/SidebarButton";
 import Header from "./layouts/Header";
 import { useParams } from "react-router-dom";
 
-const UserModel = {
-  ID: 1,
-  Username: "baoquan1211",
-  Name: "Quach Bao Quan",
-  Email: "quachbaoquan123@gmmail.com",
-  Role_ID: 5,
-  Status: "active",
-  Password: undefined,
-  createdAt: undefined,
-  updateAt: undefined,
-};
-
 const ChatRoom = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const sideBarRef = useRef(null);
@@ -27,11 +15,13 @@ const ChatRoom = () => {
 
   return (
     <>
-      <Header props={{ UserModel }} />
-      <div className="relative flex ct-transition mt-[60px] overflow-hidden">
-        {!showSideBar && (
+      <Header />
+      <div className="md:flex relative block ct-transition mt-[60px] overflow-hidden">
+        {
           <Button
-            className="absolute z-10 ml-2 bg-gray-100 border-none w-11 h-11 hover:bg-white top-2"
+            className={`absolute z-10 ml-2 bg-gray-100 dark:bg-[#444654] border-none w-11 h-11 hover:bg-white top-2 dark:hover:bg-[#595b6d] ${
+              showSideBar ? "block md:hidden" : ""
+            }`}
             onClick={() => {
               setShowSideBar((currentState) => {
                 return !currentState;
@@ -54,7 +44,7 @@ const ChatRoom = () => {
               <line x1="9" y1="3" x2="9" y2="21"></line>
             </svg>
           </Button>
-        )}
+        }
         <CSSTransition
           in={showSideBar}
           nodeRef={sideBarRef}
@@ -75,7 +65,6 @@ const ChatRoom = () => {
           classNames="chat-field"
         >
           <ChatField
-            UserModel={UserModel}
             showSideBar={showSideBar}
             setShowSideBar={setShowSideBar}
             chatFieldRef={chatFieldRef}

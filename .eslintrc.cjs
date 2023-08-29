@@ -8,7 +8,11 @@ module.exports = {
     "plugin:react-hooks/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parserOptions: { ecmaVersion: "latest", sourceType: "module" },
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    requireConfigFile: false,
+  },
   settings: { react: { version: "18.2" } },
   plugins: ["react-refresh"],
   rules: {
@@ -17,5 +21,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "no-unused-vars": 0,
   },
 };

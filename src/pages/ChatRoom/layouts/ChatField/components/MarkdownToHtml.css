@@ -1,5 +1,4 @@
 code {
-  color: black;
   font-weight: 600;
   width: 100%;
   overflow-x: scroll;
@@ -62,6 +61,9 @@ pre::before {
   gap: 4px;
   flex-grow: 1;
   width: 100%;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
 }
 
 pre {
@@ -74,7 +76,7 @@ pre {
 }
 
 pre code {
-  color: white;
+  color: whitesmoke;
   font-weight: 500;
   padding: 5px 15px 15px 15px;
 }

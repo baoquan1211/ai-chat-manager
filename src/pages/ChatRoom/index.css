@@ -1,27 +1,33 @@
 .side-bar-enter {
   width: 0px;
+  opacity: 0;
 }
 
 .side-bar-enter-active {
   width: 260px;
+  opacity: 1;
   transition: all 200ms;
 }
 
 .side-bar-enter-done {
+  opacity: 1;
   width: 260px;
 }
 
 .side-bar-exit {
   width: 260px;
+  opacity: 1;
 }
 
 .side-bar-exit-active {
   width: 0px;
+  opacity: 0;
   transition: all 200ms;
 }
 
 .side-bar-exit-done {
   width: 0px;
+  opacity: 0;
 }
 
 .chat-field-enter {
@@ -30,7 +36,7 @@
 
 .chat-field-enter-active {
   width: calc(100vw - 260px);
-  transition: width 200ms;
+  transition: all 200ms;
 }
 
 .chat-field-enter-done {
@@ -43,9 +49,67 @@
 
 .chat-field-exit-active {
   width: 100vw;
-  transition: width 200ms;
+  transition: all 200ms;
 }
 
 .chat-field-exit-done {
   width: 100vw;
+}
+
+@media screen and (max-width: 750px) {
+  .side-bar-exit {
+    width: 0px;
+    opacity: 0;
+  }
+
+  .side-bar-exit-active {
+    width: 260px;
+    opacity: 1;
+    transition: all 200ms;
+  }
+
+  .side-bar-exit-done {
+    opacity: 1;
+    width: 260px;
+  }
+
+  .side-bar-enter {
+    width: 260px;
+    opacity: 1;
+  }
+
+  .side-bar-enter-active {
+    width: 0px;
+    opacity: 0;
+    transition: all 200ms;
+  }
+
+  .side-bar-enter-done {
+    width: 0px;
+    opacity: 0;
+  }
+
+  .chat-field-enter {
+    width: 100%;
+  }
+
+  .chat-field-enter-active {
+    width: 100%;
+  }
+
+  .chat-field-enter-done {
+    width: 100%;
+  }
+
+  .chat-field-exit {
+    width: 100%;
+  }
+
+  .chat-field-exit-active {
+    width: 100%;
+  }
+
+  .chat-field-exit-done {
+    width: 100%;
+  }
 }
