@@ -10,13 +10,17 @@ const MessageCard = ({ children, role = "server", blocked = false }) => {
           blocked === true
             ? "bg-red-100 border-red-400 dark:bg-red-200 dark:text-black"
             : "bg-blue-100"
-        } ${role === "assistant" ? "bg-gray-100 dark:bg-gray-800/50" : ""} 
+        } ${
+          role === "openai" || role === "palm"
+            ? "bg-gray-100 dark:bg-gray-800/50"
+            : ""
+        } 
           ${role === "user" ? "bg-white dark:bg-[#444654]" : ""}`
       )}
     >
       <div className="w-[80%] flex gap-4">
-        {role === "assistant" ? (
-          <AssistantAvartar />
+        {role === "openai" || role === "palm" ? (
+          <AssistantAvartar platform={role} />
         ) : role === "user" ? (
           <UserAvartar />
         ) : (

@@ -13,13 +13,17 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import AssistantAvartar from "./components/AssistantAvartar";
 
-import BARD from "../../../../assets/gif/bard-icon.gif";
+import PALM from "../../../../assets/png/icon-palm.png";
 
 const ChatField = ({ chatFieldRef, conversationID }) => {
+  if (localStorage.getItem("ai-platform") == null) {
+    localStorage.setItem("ai-platform", "openai");
+  }
+  const loadingAIPlatform = useRef(localStorage.getItem("ai-platform"));
   const [message, setMessage] = useState("");
   const [conversation, setConversation] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [chatProvider, setChatProvider] = useState(1);
+  const [aiPlatform, setAIPlatform] = useState(loadingAIPlatform.current);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const loadingRef = useRef(conversationID);
@@ -96,11 +100,13 @@ const ChatField = ({ chatFieldRef, conversationID }) => {
     socket.emit("ask_request", {
       user: user.username,
       conversation: conversationID,
+      ai_platform: aiPlatform,
       message: { role: "user", content: message },
     });
     setMessage("");
     loadingRef.current = conversationID;
     setLoading(true);
+    loadingAIPlatform.current = aiPlatform;
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -117,7 +123,8 @@ const ChatField = ({ chatFieldRef, conversationID }) => {
             </MessageCard>
           ))}
           {loading === true && loadingRef.current === conversationID ? (
-            <MessageCard role="assistant">
+            <MessageCard role={loadingAIPlatform.current}>
+              {console.log(loadingAIPlatform.current)}
               <LoadingIcons.ThreeDots
                 stroke="black"
                 fill="gray"
@@ -131,23 +138,25 @@ const ChatField = ({ chatFieldRef, conversationID }) => {
           <div className="w-[700px] flex gap-x-3 p-3 select-none">
             <button
               onClick={() => {
-                setChatProvider(1);
+                setAIPlatform("openai");
+                localStorage.setItem("ai-platform", "openai");
               }}
               className={`w-10 h-10 flex items-center justify-center ${
-                chatProvider === 1 ? "border-green-600 border-2" : ""
+                aiPlatform === "openai" ? "border-green-600 border-2" : ""
               }`}
             >
               <AssistantAvartar className="w-8 h-8" />
             </button>
             <button
               onClick={() => {
-                setChatProvider(2);
+                setAIPlatform("palm");
+                localStorage.setItem("ai-platform", "palm");
               }}
               className={`w-10 h-10 flex items-center justify-center ${
-                chatProvider === 2 ? "border-green-600 border-2" : ""
+                aiPlatform === "palm" ? "border-green-600 border-2" : ""
               }`}
             >
-              <img src={BARD} alt="bard" className="w-8 h-8" />
+              <img src={PALM} alt="palm" className="w-8 h-8" />
             </button>
           </div>
           <div className="flex items-center justify-center">
